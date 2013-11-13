@@ -24,7 +24,6 @@ yと入力すると更新が実行される．終了するまでに数分かか�
 
     $ git clone https://github.com/fumi/lod2013-examples.git
     $ cd lod2013-examples/src/
-    $ bundle install
 
 ### サンプル起動
 
