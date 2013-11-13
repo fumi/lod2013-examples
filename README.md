@@ -16,12 +16,7 @@ yと入力すると更新が実行される．終了するまでに数分かか�
 ### 必須ソフトウェアのインストール
 
     $ sudo apt-get install git-core ruby1.9.3
-
-## サンプルコードの使い方
-
-### bundlerインストール
-    $ gem install bundler
-
+    $ sudo install bundler
 
 ### サンプルコードインストール
 
