@@ -15,8 +15,10 @@ yと入力すると更新が実行される．終了するまでに数分かか�
 
 ### 必須ソフトウェアのインストール
 
+    $ sudo locale-gen ja_JP.UTF-8
     $ sudo apt-get install git-core ruby1.9.3
     $ sudo install bundler
+    
 
 ### サンプルコードインストール
 
