@@ -2,11 +2,22 @@
 
 LODチャレンジ2013 第6回LODチャレンジデー用のサンプルコード
 
-## 事前準備
+## 準備
 
-* Ruby-1.9.2以上 or Ruby-2.0.0以上
+* Windows AzureかCloudnでUbuntu 12.10 を起動してsshで入れるようになるまで設定しておくこと
 
-## 使い方
+### 環境の更新
+
+    $ sudo apt-get update
+    $ sudo apt-get -u upgrade
+
+yと入力すると更新が実行される．終了するまでに数分かかる．
+
+### 必須ソフトウェアのインストール
+
+    $ sudo apt-get install git-core ruby1.9.3
+
+## サンプルコードの使い方
 
 ### bundlerインストール
     $ gem install bundler
