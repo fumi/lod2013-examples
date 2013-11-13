@@ -1,0 +1,63 @@
+<% content_for :header do %>
+  <title>地図表示</title>
+  <link rel="stylesheet" href="/css/leaflet-0.6.4.css" />
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/leaflet-0.6.4.ie.css" />
+  <![endif]-->
+  <script src="/js/leaflet-0.6.4.js"></script>
+  <style type="text/css">
+    #map {
+      margin-top: 10px;
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+      var map = L.map('map');
+      /**
+       * 国土地理院
+       */
+      /* L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+         attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>国土地理院</a>",
+      }).addTo(map);
+      */
+
+      /**
+       * Open Street Map
+       */
+      L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         attribution: "<a href='http://www.openstreetmap.org/copyright' target='_blank'>Open Street Map</a> contributors",
+      }).addTo(map);
+      
+      map.setView([35.6, 139.7], 10);
+
+      var myIcon = L.icon({
+        iconUrl: '/css/images/marker-icon.png',
+        iconRetinaUrl: '/css/images/marker-icon-2x.png',
+        iconSize: [25, 41],
+        popupAnchor: [0, -20],
+        shadowUrl: '/css/images/marker-icon-shadow.png',
+        shadowSize: [41, 41],
+      });
+
+      $.getJSON('/map/35.2/139/35.8/140', function(data){
+        for(var b in data.results.bindings) {
+          var binding = data.results.bindings[b];
+
+          var marker = L.marker([binding["lat"]["value"], binding["long"]["value"]],
+                                { icon: myIcon, title: binding["label"]["value"] });
+
+          marker.bindPopup("<a href='" + binding["s"]["value"] + "'>" +
+                           binding["label"]["value"] + "</a>").openPopup();
+          marker.addTo(map);
+        }
+      });
+    });
+  </script>
+<% end %>
+
+<h1>地図表示</h1>
+
+<div id="map"></div>
+

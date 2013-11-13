@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'rdf'
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sparql-client'
+gem 'shotgun'
