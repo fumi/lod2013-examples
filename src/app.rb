@@ -8,10 +8,10 @@ require 'sinatra/contrib'
 require 'sparql/client'
 
 helpers do
-  ENDPOINT = "http://ja.dbpedia.org/sparql"
+  ENDPOINT_DBPEDIA_JAPANESE = "http://ja.dbpedia.org/sparql"
 
   def query_endpoint_by_open_uri(endpoint, query)
-    uri = "#{ENDPOINT}?query=#{CGI.escape(query)}"
+    uri = "#{endpoint}?query=#{CGI.escape(query)}"
     $stderr.puts uri
     open(uri, "Accept" => "application/sparql-results+json").read    
   end
@@ -28,7 +28,7 @@ get '/word' do
   @results = []
 
   if params['word']
-    client = SPARQL::Client.new(ENDPOINT)
+    client = SPARQL::Client.new(ENDPOINT_DBPEDIA_JAPANESE)
     query = <<-EOQ
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
@@ -70,7 +70,7 @@ WHERE {
 LIMIT 100
 EOQ
 
-  query_endpoint_by_open_uri(ENDPOINT, query)
+  query_endpoint_by_open_uri(ENDPOINT_DBPEDIA_JAPANESE, query)
 end
 
 ##
