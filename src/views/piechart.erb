@@ -1,0 +1,38 @@
+<% content_for :header do %>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src="/js/jquery-migrate-1.2.1.js"></script>
+  <script type="text/javascript" id="sgvzlr_script" src="/js/sgvizler-0.5.1.js"></script>
+  <script type="text/javascript">
+    $(document).ready(sgvizler.go());
+  </script>
+  <title>Sgvizler 円グラフ</title>
+<% end %>
+
+<h1>Sgvizler 円グラフ</h1>
+<h2>gPieChart</h2>
+<div id="sgvzl_div_gPieChart"
+  data-sgvizler-endpoint="http://ja.dbpedia.org/sparql"
+  data-sgvizler-query="SELECT ?class (count(?instance) AS ?noOfInstances)
+WHERE { 
+  ?instance a ?class .
+}
+GROUP BY ?class
+ORDER BY DESC(?noOfInstances)"
+  data-sgvizler-chart="gPieChart"
+  data-sgvizler-loglevel="2"
+  data-sgvizler-chart-options="is3D=true|title=Number of instances"
+  style="width:800px; height:400px;"></div>
+
+<h2>gTable</h2>
+<div id="sgvzl_div_gTable"
+  data-sgvizler-endpoint="http://ja.dbpedia.org/sparql"
+  data-sgvizler-query="SELECT ?class (count(?instance) AS ?noOfInstances)
+WHERE { 
+  ?instance a ?class .
+}
+GROUP BY ?class
+ORDER BY DESC(?noOfInstances)"
+  data-sgvizler-chart="gTable"
+  data-sgvizler-loglevel="2"
+  data-sgvizler-chart-options="title=Number of instances"
+  style="width:600px; height:400px;"></div> 
