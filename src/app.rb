@@ -72,3 +72,10 @@ EOQ
 
   query_endpoint_by_open_uri(ENDPOINT, query)
 end
+
+##
+# 円グラフ
+#
+get '/piechart' do
+  erb :piechart
+end
