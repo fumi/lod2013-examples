@@ -18,6 +18,7 @@ yと入力すると更新が実行される．終了するまでに数分かか�
 ### gemの設定
 
 ~/.bashrcに以下を追加する．
+
     GEM_HOME=~/.gem
     PATH=~/.gem/ruby/1.9.1/bin:$PATH
 
