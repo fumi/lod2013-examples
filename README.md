@@ -8,6 +8,7 @@ LODチャレンジ2013 第6回LODチャレンジデー用のサンプルコー�
 
 ### 環境の更新
 
+    $ sudo locale-gen ja_JP.UTF-8
     $ sudo apt-get update
     $ sudo apt-get -u upgrade
 
@@ -15,7 +16,6 @@ yと入力すると更新が実行される．終了するまでに数分かか�
 
 ### 必須ソフトウェアのインストール
 
-    $ sudo locale-gen ja_JP.UTF-8
     $ sudo apt-get install git-core ruby1.9.3
     $ sudo gem install bundler
     
