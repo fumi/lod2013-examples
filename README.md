@@ -23,6 +23,7 @@ yと入力すると更新が実行される．終了するまでに数分かか�
     PATH=~/.gem/ruby/1.9.1/bin:$PATH
 
 その後以下を実行
+
     $ source ~/.bashrc
     $ gem install bundler --user-install
     
