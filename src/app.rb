@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
+require 'bundler/setup'
 require 'json'
 require 'open-uri'
 require 'sinatra'
@@ -22,7 +23,7 @@ get '/' do
 end
 
 ##
-# DBpedia Japaneseから単語を引っ張ってくる
+# 単語からデータ表示
 #
 get '/word' do
   @results = []
@@ -74,7 +75,7 @@ EOQ
 end
 
 ##
-# 円グラフ
+# 円グラフ表示
 #
 get '/piechart' do
   erb :piechart
