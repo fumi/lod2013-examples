@@ -4,6 +4,20 @@
 
 <h1>DBpedia Japanese データ表示</h1>
 
+<p>渡された単語をSPARQLで問い合わせてそれについてのデータを取得．</p>
+
+<h2>app.rb内でのSPARQLクエリ</h2>
+<pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT *
+WHERE {
+  ?s rdfs:label "#{params['word']}"@ja ;
+    ?p ?o .
+}
+LIMIT 100
+</code></pre>
+
+
 <form role="form" class="form-inline" action="/word" method="GET">
   <div class="form-group">
     <label class="sr-only" for="word">Word</label>
