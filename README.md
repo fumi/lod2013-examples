@@ -11,9 +11,11 @@ LODチャレンジ2013 第6回LODチャレンジデー用のサンプルコー�
     $ sudo locale-gen ja_JP.UTF-8
     $ sudo apt-get update
     $ sudo apt-get -u upgrade
-    $ sudo apt-get install git-core ruby1.9.3
 
 yと入力すると更新が実行される．終了するまでに数分かかる．
+その後以下をインストール．
+
+    $ sudo apt-get install git-core ruby1.9.3
 
 ### gemの設定
 
@@ -39,7 +41,7 @@ yと入力すると更新が実行される．終了するまでに数分かか�
     $ bundle exec shotgun -o 0.0.0.0 app.rb
 
 
-ブラウザで http://ホスト名:9393 にアクセスして見らればOK．
+ブラウザで http://IPアドレス:9393 にアクセスして見らればOK．
 あらかじめWindows AzureあるいはCloudnで9393ポートを開いておくこと．
 
 #### Windows Azure
