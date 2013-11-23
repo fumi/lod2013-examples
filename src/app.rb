@@ -9,16 +9,17 @@ require 'sinatra/contrib'
 require 'sparql/client'
 
 helpers do
-  ENDPOINT_DBPEDIA_JAPANESE = "http://ja.dbpedia.org/sparql"
+  DEFAULT_ENDPOINT = "http://ja.dbpedia.org/sparql"
 
   ##
   # SPARQL Endpoint URIを指定してクエリを投げて，JSONを受け取る
   #
-  # @param [String] SPARQL Endpoint URI
   # @param [String] SPARQLクエリ
+  # @param [String] SPARQL Endpoint URI
   # @return [String] JSON文字列
   #
-  def query_endpoint_by_open_uri(endpoint, query)
+  def query_endpoint_by_open_uri(query, endpoint=nil)
+    endpoint ||= DEFAULT_ENDPOINT
     uri = "#{endpoint}?query=#{CGI.escape(query)}"
     $stderr.puts uri
     open(uri, "Accept" => "application/sparql-results+json").read    
@@ -40,7 +41,7 @@ get '/word' do
   @results = []
 
   if params['word']
-    client = SPARQL::Client.new(ENDPOINT_DBPEDIA_JAPANESE)
+    client = SPARQL::Client.new(DEFAULT_ENDPOINT)
     query = <<-EOQ
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
@@ -86,7 +87,7 @@ WHERE {
 LIMIT 100
 EOQ
 
-  query_endpoint_by_open_uri(ENDPOINT_DBPEDIA_JAPANESE, query)
+  query_endpoint_by_open_uri(query, DEFAULT_ENDPOINT)
 end
 
 ##
