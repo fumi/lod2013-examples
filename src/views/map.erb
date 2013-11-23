@@ -14,24 +14,26 @@
   </style>
   <script type="text/javascript">
     $(function() {
-      var map = L.map('map');
       /**
-       * 国土地理院
+       * Leafletで地図表示
        */
+      var map = L.map('map');
+
+      // 地理院地図の利用
       /* L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
-         attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>国土地理院</a>",
+         attribution: "&copy; <a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'>国土地理院</a>",
       }).addTo(map);
       */
 
-      /**
-       * Open Street Map
-       */
+      // Open Street Mapの利用
       L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-         attribution: "<a href='http://www.openstreetmap.org/copyright' target='_blank'>Open Street Map</a> contributors",
+         attribution: "&copy; <a href='http://www.openstreetmap.org/copyright' target='_blank'>Open Street Map</a> contributors",
       }).addTo(map);
-      
+
+      // 地図表示の設定．位置，ズーム
       map.setView([35.6, 139.7], 10);
 
+      // ポイント表示のアイコン設定
       var myIcon = L.icon({
         iconUrl: '/css/images/marker-icon.png',
         iconRetinaUrl: '/css/images/marker-icon-2x.png',
@@ -41,6 +43,16 @@
         shadowSize: [41, 41],
       });
 
+      /*
+       * JSONの取得のためにサーバへ問い合わせ
+       *
+       * クロスドメインを気にしないですむように，JSでは対象の緯度経度をパラメータで渡して
+       * Ruby側でSPARQLクエリを投げるようにしている．
+       * パラメータの順番: '/map/左上の緯度/左上の経度/右下の緯度/右下の経度'
+       *
+       * SPARQL Endpointからの結果のJSONを直接利用しているので，
+       * CORS対応しているSPARQL Endpointへならクエリを含んだURLを直接指定しても動くはず．
+       */
       $.getJSON('/map/35.2/139/35.8/140', function(data){
         for(var b in data.results.bindings) {
           var binding = data.results.bindings[b];
@@ -57,7 +69,6 @@
   </script>
 <% end %>
 
-<h1>地図表示</h1>
+<h1>地図表示 (Leaflet + OpenStreetMap)</h1>
 
 <div id="map"></div>
-
