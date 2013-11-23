@@ -69,6 +69,26 @@
   </script>
 <% end %>
 
-<h1>地図表示 (Leaflet + OpenStreetMap)</h1>
+<h1>地図表示</h1>
+
+<p>サービス非依存の地図ライブラリである<a href="http://leafletjs.com">Leaflet</a>を使用して，OpenStreetMap上にSPARQLで検索したポイントデータを表示する．
+</p>
+
+<h2>app.rb内で使用しているSPARQLクエリ</h2>
+<pre><code>PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
+
+SELECT *
+WHERE {
+  ?s rdfs:label ?label ;
+    geo:lat ?lat ;
+    geo:long ?long .
+  FILTER (?lat &gt; "#{params[:lat1]}"^^xsd:float &&
+          ?lat &lt; "#{params[:lat2]}"^^xsd:float &&
+          ?long &gt; "#{params[:long1]}"^^xsd:float &&
+          ?long &lt; "#{params[:long2]}"^^xsd:float)
+}
+LIMIT 100
+</code></pre>
 
 <div id="map"></div>
